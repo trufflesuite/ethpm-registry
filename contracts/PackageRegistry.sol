@@ -7,8 +7,6 @@ import "./VersionUtils.sol";
 
 contract PackageRegistry {
   mapping (bytes32 => VersionRegistry) public packages;
-  mapping (bytes32 => address[]) public owners;
-  mapping (bytes32 => uint) public ownerCount;
 
   function PackageRegistry() {
 
