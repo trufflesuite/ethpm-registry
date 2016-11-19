@@ -12,22 +12,22 @@ contract PackageRegistry {
 
   }
 
-  function register(bytes32 name, uint8[3] version, string lockfileURI) returns (bool) {
-    if (address(packages[name]) == 0x0) {
-      return registerNewPackageAndVersion(msg.sender, name, version, lockfileURI);
+  function packageExists(bytes32 name) constant returns (bool) {
+    return address(packages[name]) != 0x0;
+  }
+
+  function registerPackage(bytes32 name) returns (bool) {
+    if (packageExists(name)) {
+      return false;
     } else {
-      return registerNewVersion(msg.sender, name, version, lockfileURI);
+      packages[name] = new VersionRegistry(msg.sender);
+      return true;
     }
   }
 
-  function registerNewPackageAndVersion(address owner, bytes32 name, uint8[3] version, string lockfileURI) internal returns (bool) {
-    packages[name] = new VersionRegistry(owner, version, lockfileURI);
-    return true;
-  }
-
-  function registerNewVersion(address owner, bytes32 name, uint8[3] version, string lockfileURI) internal returns (bool) {
+  function getVersionRegistry(bytes32 name) constant returns (address) {
     VersionRegistry registry = packages[name];
-    return registry.register(version, lockfileURI);
+    return address(registry);
   }
 
 }
