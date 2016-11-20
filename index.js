@@ -1,5 +1,6 @@
-var VersionUtils = require("./build/contracts/VersionUtils.sol");
-var PackageRegistry = require("./build/contracts/PackageRegistry.sol");
+var VersionUtils = require("./build/contracts/VersionUtils.sol.js");
+var PackageRegistry = require("./build/contracts/PackageRegistry.sol.js");
+var Registry = require("./lib/registry.js");
 var Web3 = require("web3");
 
 var EPMRegistry = {
@@ -34,6 +35,10 @@ var EPMRegistry = {
 
       return PackageRegistry.new();
     });
+  },
+
+  use: function(address, from_address, provider) {
+    return new Registry(address, from_address, provider);
   }
 };
 
