@@ -56,7 +56,7 @@ describe("EthPM integration", function() {
     var temp_package_path = temp.mkdirSync("eth-registry-test-package-");
     var example_package = path.resolve(path.join(__dirname, "./owned-example"));
 
-    fs.copy(example_package, temp_package_path, function(err) {
+    fs.copy(example_package, temp_package_path, {}, function(err) {
       if (err) return done(err);
 
       package_path = temp_package_path;

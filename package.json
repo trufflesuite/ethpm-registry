@@ -24,6 +24,7 @@
   "homepage": "https://github.com/ethpm/epm-registry#readme",
   "devDependencies": {
     "ethereumjs-testrpc": "^3.0.2",
+    "ethpm": "0.0.2",
     "ipfsd-ctl": "^0.17.0",
     "mocha": "^3.1.2",
     "temp": "^0.8.3"
