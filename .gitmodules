@@ -1,0 +1,3 @@
+[submodule "contracts/package-index"]
+	path = contracts/package-index
+	url = git@github.com:ethpm/dummy-package-index.git
