@@ -1,5 +1,4 @@
-var VersionUtils = require("./build/contracts/VersionUtils.sol.js");
-var PackageRegistry = require("./build/contracts/PackageRegistry.sol.js");
+var PackageIndex = require("./build/contracts/PackageIndex.sol.js");
 var Registry = require("./lib/registry.js");
 var Web3 = require("web3");
 
@@ -14,27 +13,14 @@ var EPMRegistry = {
       provider = new Web3.providers.HttpProvider("http://localhost:8545");
     }
 
-    VersionUtils.defaults({
+    PackageIndex.defaults({
       from: from_address,
       gas: 3141592
     });
 
-    PackageRegistry.defaults({
-      from: from_address,
-      gas: 3141592
-    });
+    PackageIndex.setProvider(provider);
 
-    VersionUtils.setProvider(provider);
-    PackageRegistry.setProvider(provider);
-
-    return VersionUtils.new().then(function(version_utils) {
-      // This line is a little gross.
-      VersionUtils.address = version_utils.address;
-
-      PackageRegistry.link(VersionUtils);
-
-      return PackageRegistry.new();
-    });
+    return PackageIndex.new();
   },
 
   use: function(address, from_address, provider) {

@@ -84,7 +84,6 @@ describe("EthPM integration", function() {
       return registry.getLockfileURI("owned", versions[0]);
     }).then(function(lockfileURI) {
       assert.notEqual(lockfileURI, null);
-
       return host.get(lockfileURI);
     }).then(function(lockfile_contents) {
       var lockfile = JSON.parse(lockfile_contents);
