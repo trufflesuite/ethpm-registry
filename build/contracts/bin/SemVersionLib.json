@@ -1,0 +1,126 @@
+{
+  "contract_name": "SemVersionLib",
+  "default_network": "*",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "self",
+          "type": "SemVersionLib.Version storage"
+        },
+        {
+          "name": "other",
+          "type": "SemVersionLib.Version storage"
+        }
+      ],
+      "name": "isGreater",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "self",
+          "type": "SemVersionLib.Version storage"
+        },
+        {
+          "name": "other",
+          "type": "SemVersionLib.Version storage"
+        }
+      ],
+      "name": "isLesserOrEqual",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "self",
+          "type": "SemVersionLib.Version storage"
+        },
+        {
+          "name": "other",
+          "type": "SemVersionLib.Version storage"
+        }
+      ],
+      "name": "isEqual",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "self",
+          "type": "SemVersionLib.Version storage"
+        },
+        {
+          "name": "other",
+          "type": "SemVersionLib.Version storage"
+        }
+      ],
+      "name": "isLesser",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "self",
+          "type": "SemVersionLib.Version storage"
+        },
+        {
+          "name": "other",
+          "type": "SemVersionLib.Version storage"
+        }
+      ],
+      "name": "isGreaterOrEqual",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    }
+  ],
+  "unlinked_binary": "0x606060405234610000575b6103d8806100186000396000f36504062dabbdf050606060405260e060020a60003504631f51f97981146100525780631f9a62bd1461007457806358b9e6d31461009657806367ae3507146100b8578063fcf21181146100da575b610000565b6100606004356024356100fc565b604080519115158252519081900360200190f35b6100606004356024356101fd565b604080519115158252519081900360200190f35b610060600435602435610223565b604080519115158252519081900360200190f35b6100606004356024356102ad565b604080519115158252519081900360200190f35b6100606004356024356103b2565b604080519115158252519081900360200190f35b8054825460009163ffffffff9081169116111561011f575060016101f1566101f1565b8154835463ffffffff9182169116101561013f575060006101f1566101f1565b8154835463ffffffff6401000000009283900481169290910416111561016b575060016101f1566101f1565b8154835463ffffffff64010000000092839004811692909104161015610197575060006101f1566101f1565b8154835463ffffffff604060020a928390048116929091041611156101c2575060016101f1566101f1565b8154835463ffffffff604060020a928390048116929091041610156101ed575060006101f1566101f1565b5060005b5b5b5b5b5b5b92915050565b60006102098383610223565b80610219575061021983836102ad565b5b90505b92915050565b8054825460009163ffffffff918216911614610245575060006101f1566101f1565b815483546401000000009182900463ffffffff908116929091041614610271575060006101f1566101f1565b81548354604060020a9182900463ffffffff90811692909104161461029c575060006101f1566101f1565b5060016101f1565b5b5b5b92915050565b8054825460009163ffffffff908116911610156102d0575060016101f1566101f1565b8154835463ffffffff918216911611156102f0575060006101f1566101f1565b8154835463ffffffff6401000000009283900481169290910416101561031c575060016101f1566101f1565b8154835463ffffffff64010000000092839004811692909104161115610348575060006101f1566101f1565b8154835463ffffffff604060020a92839004811692909104161015610373575060016101f1566101f1565b8154835463ffffffff604060020a928390048116929091041611156101ed575060006101f1566101f1565b5060006101f1565b5b5b5b5b5b5b92915050565b60006103be8383610223565b80610219575061021983836100fc565b5b90505b9291505056",
+  "networks": {
+    "*": {
+      "links": {},
+      "events": {},
+      "updated_at": 1481648228671
+    }
+  },
+  "generated_with": "4.0.0-1",
+  "updated_at": 1481648228671
+}

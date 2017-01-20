@@ -1,0 +1,15 @@
+{
+  "contract_name": "PackageLib",
+  "default_network": "*",
+  "abi": [],
+  "unlinked_binary": "0x6060604052346000575b60118060156000396000f36504062dabbdf05060606040525b600056",
+  "networks": {
+    "*": {
+      "links": {},
+      "events": {},
+      "updated_at": 1481648228670
+    }
+  },
+  "generated_with": "4.0.0-1",
+  "updated_at": 1481648228670
+}
