@@ -24,7 +24,7 @@
   "homepage": "https://github.com/ethpm/epm-registry#readme",
   "devDependencies": {
     "ethereumjs-testrpc": "^3.0.2",
-    "ethpm": "0.0.2",
+    "ethpm": "0.0.4",
     "ipfsd-ctl": "^0.17.0",
     "mocha": "^3.1.2",
     "temp": "^0.8.3"
@@ -35,6 +35,8 @@
     "semver": "^5.3.0",
     "solidity-sha3": "^0.4.1",
     "truffle": "beta",
+    "truffle-artifactor": "^2.0.1",
+    "truffle-contract": "^1.0.5",
     "web3": "^0.16.0",
     "yargs": "^6.4.0"
   }

@@ -7,22 +7,17 @@ var path = require("path");
 var ipfsd = require("ipfsd-ctl");
 var TestRPC = require("ethereumjs-testrpc");
 var EPMR = require("../index");
-var Web3 = require("web3");
 
-describe("EthPM integration", function() {
+var PackageIndex = artifacts.require("PackageIndex.sol");
+
+contract("EthPM integration", function() {
   var package_path;
   var config;
+  var ipfs_node;
   var ipfs_host;
   var ipfs_port;
   var host;
   var registry;
-  var registry_address;
-  var provider = TestRPC.provider({
-    seed: "keep it deterministic",
-    // logger: console,
-    // verbose: true
-  });
-  var web3 = new Web3(provider);
   var accounts;
 
   before("get accounts", function(done) {
@@ -33,22 +28,22 @@ describe("EthPM integration", function() {
     });
   });
 
-  before("deploy registry", function() {
-    return EPMR.deploy(provider, accounts[0]).then(function(registry) {
-      registry_address = registry.address;
-    });
-  });
-
   before("set up IPFS server", function(done) {
-    this.timeout(5000);
+    this.timeout(10000);
 
-    ipfsd.disposableApi(function (err, ipfs) {
+    ipfsd.disposable(function (err, node) {
       if (err) return done(err);
 
-      ipfs_host = ipfs.apiHost;
-      ipfs_port = ipfs.apiPort;
+      ipfs_node = node;
 
-      done(err);
+      ipfs_node.startDaemon(function(err, ipfs) {
+        if (err) return done(err);
+
+        ipfs_host = ipfs.apiHost;
+        ipfs_port = ipfs.apiPort;
+
+        done(err);
+      });
     });
   });
 
@@ -67,15 +62,24 @@ describe("EthPM integration", function() {
   before("set up ethpm config", function() {
     this.timeout(5000);
     host = new EthPM.hosts.IPFS(ipfs_host, ipfs_port);
-    registry = new Registry(registry_address, accounts[0], provider);
-    config = EthPM.configure(package_path, host, registry);
+    registry = new Registry(PackageIndex.address, accounts[0], web3.currentProvider);
+    pkg = new EthPM(package_path, host, registry);
   });
 
-  it("registers the package correctly", function(done) {
+  after("kill ipfs node", function(done) {
+    // Why would IPFS call the callback twice? Madness.
+    ipfs_node.stopDaemon(function() {
+      done();
+      done = function() {};
+    });
+  });
+
+  it("registers the package correctly", function() {
     // Note we cheat a little bit here so we don't have to add more dependencies
     // or do any compiling.
     var contract_metadata = {owned: {}, mortal: {}, transferable: {}};
-    EthPM.publishPackage(config, contract_metadata).then(function() {
+
+    return pkg.publish().then(function() {
       return registry.getAllVersions("owned");
     }).then(function(versions) {
       assert.equal(versions.length, 1);
@@ -86,26 +90,15 @@ describe("EthPM integration", function() {
       assert.notEqual(lockfileURI, null);
       return host.get(lockfileURI);
     }).then(function(lockfile_contents) {
-      var lockfile = JSON.parse(lockfile_contents);
 
-      return host.get(lockfile.package_manifest);
-    }).then(function(manifest_file_contents) {
-      var manifest = JSON.parse(manifest_file_contents);
-
-      fs.readFile(path.resolve(path.join(package_path, "epm.json")), "utf8", function(err, contents) {
-        if (err) return done(err);
-        var expected_manifest = JSON.parse(contents);
-
-        assert.deepEqual(manifest, expected_manifest);
-
-        done();
-      });
-    }).catch(done);
+      //console.log(lockfile_contents);
+      // TODO: assert lockfile contents data here
+    });
   });
 
-  it("registers a second version correctly", function(done) {
-    done();
-  });
+  // it("registers a second version correctly", function(done) {
+  //   done();
+  // });
 
 
 });
