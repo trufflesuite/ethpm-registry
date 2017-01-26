@@ -96,9 +96,18 @@ contract("EthPM integration", function() {
     });
   });
 
-  // it("registers a second version correctly", function(done) {
-  //   done();
-  // });
+  it("errors when you try to register the same version twice", function(done) {
+    // Note we cheat a little bit here so we don't have to add more dependencies
+    // or do any compiling.
+    var contract_metadata = {owned: {}, mortal: {}, transferable: {}};
 
-
+    pkg.publish().then(function() {
+      return registry.getAllVersions("owned");
+    }).then(function() {
+      done(new Error("Should not have gotten here. Should have errored beforehand."));
+    }).catch(function(e) {
+      assert(e.message.indexOf("Could not publish package. Please check version number and ensure it was not previously published.") == 0);
+      done();
+    });
+  });
 });
