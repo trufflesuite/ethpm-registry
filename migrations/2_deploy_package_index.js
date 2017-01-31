@@ -22,36 +22,55 @@ module.exports = function(deployer) {
   ]);
   deployer.link(SemVersionLib, [PackageDB, ReleaseDB]);
   deployer.link(IndexedOrderedSetLib, [PackageDB, ReleaseDB]);
+
+  var package_index;
+  var package_db;
+  var release_db;
+  var whitelist_authority
+
   deployer.deploy([
     PackageDB,
     ReleaseDB,
     PackageIndex
   ]).then(function() {
+    return PackageIndex.deployed();
+  }).then(function(instance) {
+    package_index = instance;
+    return PackageDB.deployed();
+  }).then(function(instance) {
+    package_db = instance;
+    return ReleaseDB.deployed();
+  }).then(function(instance) {
+    release_db = instance;
+    return WhitelistAuthority.deployed();
+  }).then(function(instance) {
+    whitelist_authority = instance;
+
     return Promise.all([
-      PackageIndex.deployed().setPackageDb(PackageDB.address),
-      PackageIndex.deployed().setReleaseDb(ReleaseDB.address),
-      PackageIndex.deployed().setReleaseValidator(ReleaseValidator.address)
+      package_index.setPackageDb(PackageDB.address),
+      package_index.setReleaseDb(ReleaseDB.address),
+      package_index.setReleaseValidator(ReleaseValidator.address)
     ]);
   }).then(function() {
     return Promise.all([
-      PackageDB.deployed().setAuthority(WhitelistAuthority.address),
-      ReleaseDB.deployed().setAuthority(WhitelistAuthority.address),
-      PackageIndex.deployed().setAuthority(WhitelistAuthority.address)
+      package_db.setAuthority(WhitelistAuthority.address),
+      release_db.setAuthority(WhitelistAuthority.address),
+      package_index.setAuthority(WhitelistAuthority.address)
     ]);
   }).then(function() {
     return Promise.all([
       // ReleaseDB
-      WhitelistAuthority.deployed().setCanCall(PackageIndex.address, ReleaseDB.address, four_byte_sig("setRelease(bytes32,bytes32,string)"), true),
-      WhitelistAuthority.deployed().setAnyoneCanCall(ReleaseDB.address, four_byte_sig("setVersion(uint32,uint32,uint32,string,string)"), true),
-      WhitelistAuthority.deployed().setAnyoneCanCall(ReleaseDB.address, four_byte_sig("updateLatestTree(bytes32)"), true),
+      whitelist_authority.setCanCall(PackageIndex.address, ReleaseDB.address, four_byte_sig("setRelease(bytes32,bytes32,string)"), true),
+      whitelist_authority.setAnyoneCanCall(ReleaseDB.address, four_byte_sig("setVersion(uint32,uint32,uint32,string,string)"), true),
+      whitelist_authority.setAnyoneCanCall(ReleaseDB.address, four_byte_sig("updateLatestTree(bytes32)"), true),
 
       // PackageDB
-      WhitelistAuthority.deployed().setCanCall(PackageIndex.address, PackageDB.address, four_byte_sig("setPackage(string)"), true),
-      WhitelistAuthority.deployed().setCanCall(PackageIndex.address, PackageDB.address, four_byte_sig("setPackageOwner(bytes32,address)"), true),
+      whitelist_authority.setCanCall(PackageIndex.address, PackageDB.address, four_byte_sig("setPackage(string)"), true),
+      whitelist_authority.setCanCall(PackageIndex.address, PackageDB.address, four_byte_sig("setPackageOwner(bytes32,address)"), true),
 
       // PackageIndex
-      WhitelistAuthority.deployed().setAnyoneCanCall(PackageIndex.address, four_byte_sig("release(string,uint32,uint32,uint32,string,string,string)"), true),
-      WhitelistAuthority.deployed().setAnyoneCanCall(PackageIndex.address, four_byte_sig("transferPackageOwner(string,address)"), true)
+      whitelist_authority.setAnyoneCanCall(PackageIndex.address, four_byte_sig("release(string,uint32,uint32,uint32,string,string,string)"), true),
+      whitelist_authority.setAnyoneCanCall(PackageIndex.address, four_byte_sig("transferPackageOwner(string,address)"), true)
     ]);
   });
 };
