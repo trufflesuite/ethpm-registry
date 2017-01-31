@@ -1,6 +1,6 @@
 {
   "name": "ethpm-registry",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Create a new epm registry on-chain",
   "main": "index.js",
   "bin": {
