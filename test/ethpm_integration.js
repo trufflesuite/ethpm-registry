@@ -5,7 +5,6 @@ var temp = require("temp").track();
 var fs = require("fs-extra");
 var path = require("path");
 var ipfsd = require("ipfsd-ctl");
-var TestRPC = require("ethereumjs-testrpc");
 var EPMR = require("../index");
 
 var PackageIndex = artifacts.require("PackageIndex.sol");
