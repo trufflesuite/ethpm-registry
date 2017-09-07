@@ -1,6 +1,6 @@
 {
   "name": "ethpm-registry",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Create a new epm registry on-chain",
   "main": "index.js",
   "bin": {
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/ethpm/epm-registry#readme",
   "devDependencies": {
-    "ethpm": "0.0.10",
+    "ethpm": "0.0.15",
     "ipfsd-ctl": "^0.18.1",
     "mocha": "^3.2.0",
     "temp": "^0.8.3"
