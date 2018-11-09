@@ -1,6 +1,6 @@
 {
   "name": "ethpm-registry",
-  "version": "0.0.10",
+  "version": "0.1.0-next.0",
   "description": "Create a new epm registry on-chain",
   "main": "index.js",
   "bin": {
@@ -31,7 +31,7 @@
     "semver": "^5.3.0",
     "solidity-sha3": "^0.4.1",
     "truffle-artifactor": "^2.1.2",
-    "truffle-contract": "^4.0.0-beta.1",
-    "web3": "^1.0.0-beta.36"
+    "web3": "^1.0.0-beta.36",
+    "truffle-contract": "4.0.0-next.0"
   }
 }
