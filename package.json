@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/ethpm/epm-registry#readme",
   "devDependencies": {
-    "ethpm": "0.0.16",
-    "ipfsd-ctl": "^0.39.5",
-    "mocha": "^5.2.0",
+    "ethpm": "0.0.15",
+    "ipfsd-ctl": "^0.18.1",
+    "mocha": "^3.2.0",
     "temp": "^0.8.3"
   },
   "dependencies": {
@@ -31,7 +31,7 @@
     "semver": "^5.3.0",
     "solidity-sha3": "^0.4.1",
     "truffle-artifactor": "^2.1.2",
-    "truffle-contract": "^4.0.0-beta.1",
-    "web3": "^1.0.0-beta.36"
+    "truffle-contract": "^1.1.6",
+    "web3": "^0.18.2"
   }
 }
