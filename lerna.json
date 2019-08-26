@@ -1,0 +1,10 @@
+{
+  "lerna": "2.11.0",
+  "packages": [
+    "*"
+  ],
+  "version": "independent",
+  "npmClient": "npm",
+  "npmClientArgs": ["--ignore-engines"],
+  "useWorkspaces": false
+}
