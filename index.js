@@ -1,4 +1,4 @@
-var contract = require("truffle-contract");
+var contract = require("@truffle/contract");
 var Registry = require("./lib/registry.js");
 var Web3 = require("web3");
 
