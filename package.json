@@ -28,8 +28,7 @@
   "dependencies": {
     "fs-extra": "^2.0.0",
     "semver": "^5.3.0",
-    "truffle-artifactor": "^2.1.2",
-    "truffle-contract": "^1.1.6",
+    "@truffle/contract": "^4.0.34",
     "web3": "^0.18.2"
   }
 }
