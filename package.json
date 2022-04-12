@@ -19,16 +19,10 @@
     "url": "https://github.com/ethpm/epm-registry/issues"
   },
   "homepage": "https://github.com/ethpm/epm-registry#readme",
-  "devDependencies": {
-    "ethpm": "0.0.15",
-    "ipfsd-ctl": "^0.18.1",
-    "mocha": "^3.2.0",
-    "temp": "^0.8.3"
-  },
   "dependencies": {
     "fs-extra": "^2.0.0",
     "semver": "^5.3.0",
     "@truffle/contract": "^4.0.34",
-    "web3": "^0.18.2"
+    "web3": "1.5.3"
   }
 }

@@ -10,7 +10,7 @@ var PackageIndex = artifacts.require("PackageIndex.sol");
 // TODO: Remove hardcoding of signatures and have a function like this one search abis
 // looking for the function by name, and error if a function is not found.
 function four_byte_sig(signature) {
-  return web3.sha3(signature).substring(0, 10);
+  return web3.utils.sha3(signature).substring(0, 10);
 }
 
 module.exports = function(deployer) {
