@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/ethpm/epm-registry#readme",
   "devDependencies": {
-    "ethpm": "0.0.15",
+    "ethpm": "0.1.0-next.32",
     "ipfsd-ctl": "^0.18.1",
-    "mocha": "^3.2.0",
+    "mocha": "^10.2.0",
     "temp": "^0.8.3"
   },
   "dependencies": {
